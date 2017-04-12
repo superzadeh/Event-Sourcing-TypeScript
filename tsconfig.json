@@ -1,0 +1,17 @@
+{
+  "compileOnSave": true, // currently supported in Visual Studio 2015 with TypeScript 1.8.4 and above, and atom-typescript plugin.
+  "compilerOptions": {
+    "module": "es6",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true
+  },
+  "include": [
+    "src/typescript/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}
