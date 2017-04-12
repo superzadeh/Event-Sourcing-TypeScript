@@ -1,19 +1,19 @@
 import {
-  AccountEvent,
   AccountCreated,
-  AccountUpdated,
+  AccountDeleted,
   AccountDeletionRequested,
-  AccountDeleted
-} from "./Events/AccountEvent";
+  AccountEvent,
+  AccountUpdated,
+} from './Events/AccountEvent';
 
-import { MemoryCache } from "./Infrastructure/Cache";
-import { Account } from "./ReadModels/Account";
-import { AccountEventHandler } from "./EventHandlers/AccountEventHandler";
+import { AccountEventHandler } from './EventHandlers/AccountEventHandler';
+import { MemoryCache } from './Infrastructure/Cache';
+import { Account } from './ReadModels/Account';
 
-console.log("Starting...");
+console.log('Starting...');
 
 // Init
-const accountId = "SomeGuid";
+const accountId = 'SomeGuid';
 const accountCreated = new AccountCreated();
 accountCreated.accountId = accountId;
 const accountUpdated = new AccountUpdated();
@@ -33,5 +33,3 @@ eventHandler.handle(accountDeletionRequested);
 console.log(cache.Get(accountId));
 eventHandler.handle(accountDeleted);
 console.log(cache.Get(accountId));
-
-

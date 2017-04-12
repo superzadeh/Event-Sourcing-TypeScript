@@ -1,9 +1,9 @@
 export class Account {
-  id: string;
-  owner: string;
-  createdDate: Date;
-  deletedDate: Date;
-  isDeleted: boolean;
-  isDeletionPending: boolean;
-  lastUpdate: Date;
+  public id: string;
+  public owner: string;
+  public createdDate: Date;
+  public deletedDate: Date;
+  public isDeleted: boolean;
+  public isDeletionPending: boolean;
+  public lastUpdate: Date;
 }

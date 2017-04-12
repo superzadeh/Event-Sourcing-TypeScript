@@ -1,25 +1,25 @@
-import { IEventHandler } from "./IEventHandler";
-import { AccountEvent } from "../Events/AccountEvent";
-import { ICache } from "../Infrastructure/Cache";
+import { AccountEvent } from '../Events/AccountEvent';
+import { ICache } from '../Infrastructure/Cache';
+import { IEventHandler } from './IEventHandler';
 
 export class AccountEventHandler implements IEventHandler<AccountEvent> {
-  private _cache: ICache<Account>;
+  private cache: ICache<Account>;
   constructor(cache: ICache<Account>) {
-    this._cache = cache;
+    this.cache = cache;
   }
-  handle(event: AccountEvent) {
-    var readModel = this._cache.Get(event.accountId);
+  public handle(event: AccountEvent) {
+    const readModel = this.cache.Get(event.accountId);
     switch (event.type) {
-      case "ACCOUNT_CREATED":
-        this._cache.Store(readModel.id, readModel);
+      case 'ACCOUNT_CREATED':
+        this.cache.Store(readModel.id, readModel);
         break;
-      case "ACCOUNT_UPDATED":
-        this._cache.Store(readModel.id, readModel);
+      case 'ACCOUNT_UPDATED':
+        this.cache.Store(readModel.id, readModel);
         break;
-      case "ACCOUNT_DELETION_REQUESTED":
+      case 'ACCOUNT_DELETION_REQUESTED':
         break;
-      case "ACCOUNT_DELETED":
-        this._cache.Remove(readModel.id);
+      case 'ACCOUNT_DELETED':
+        this.cache.Remove(readModel.id);
         break;
     }
   }

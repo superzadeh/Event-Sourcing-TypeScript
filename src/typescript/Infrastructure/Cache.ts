@@ -5,14 +5,14 @@ export interface ICache<T> {
 }
 
 export class MemoryCache<T> implements ICache<T> {
-  private _values: { [key: string]: T; } = {};
-  Get(key: string) {
-    return this._values[key];
+  private values: { [key: string]: T; } = {};
+  public Get(key: string) {
+    return this.values[key];
   }
-  Store(key: string, value: T) {
-    this._values[key] = value;
+  public Store(key: string, value: T) {
+    this.values[key] = value;
   }
-  Remove(key: string): boolean {
-    return this._values[key] = null;
+  public Remove(key: string): boolean {
+    return this.values[key] = null;
   }
 }

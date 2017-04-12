@@ -1,6 +1,6 @@
 export abstract class EventBase {
-  id: string;
-  aggregateId: string;
-  timestamp: Date;
-  abstract type: string;
+  public id: string;
+  public aggregateId: string;
+  public timestamp: Date;
+  public abstract type: string;
 }

@@ -1,4 +1,17 @@
 {
-  "rulesDirectory": ["node_modules/tslint-microsoft-contrib"],
-  "extends": "tslint-microsoft-contrib"
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {},
+  "rules": {
+    "no-console": [
+      false, "log"
+    ],
+    "quotemark": [true, "single", "avoid-escape"],
+    "max-classes-per-file": [
+      false
+    ]
+  },
+  "rulesDirectory": []
 }
