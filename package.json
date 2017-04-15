@@ -2,30 +2,34 @@
   "name": "event-sourcing-typescript",
   "version": "1.0.0",
   "description": "Event Sourcing example using TypeScript",
-  "main": "lib/app.js",
+  "main": "lib/app",
+  "typings": "lib/app",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node lib/app.js",
+    "start": "npm run build:live",
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/app.ts",
     "precompile": "npm run clean",
     "clean": "rimraf lib/*",
     "compile": "npm run lint && npm run compile:ts",
     "compile:watch": "npm run compile:ts -- -w",
-    "compile:ts": "tsc --outDir ./lib ./src/typescript/app.ts",
+    "compile:ts": "tsc --outDir ./lib --project tsconfig.json",
     "lint": "npm run lint:ts",
-    "lint:ts": "tslint src/typescript/**/*.ts"
+    "lint:ts": "tslint src/**/*.ts"
   },
   "repository": {
-    "type": "",
+    "type": "git",
     "url": ""
   },
-  "author": "superzadeh <superzadeh@outlook.com",
+  "author": "superzadeh <superzadeh@outlook.com>",
   "license": "MIT",
   "bugs": {
     "url": ""
   },
   "homepage": "",
   "devDependencies": {
+    "@types/node": "^7.0.12",
     "rimraf": "2.6.1",
+    "ts-node": "^3.0.2",
     "tslint": "5.1.0",
     "typescript": "2.2.2"
   }

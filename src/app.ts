@@ -33,3 +33,5 @@ eventHandler.handle(accountDeletionRequested);
 console.log(cache.Get(accountId));
 eventHandler.handle(accountDeleted);
 console.log(cache.Get(accountId));
+
+console.log('Completed!');

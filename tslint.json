@@ -11,6 +11,9 @@
     "quotemark": [true, "single", "avoid-escape"],
     "max-classes-per-file": [
       false
+    ],
+    "interface-name": [
+      false
     ]
   },
   "rulesDirectory": []
