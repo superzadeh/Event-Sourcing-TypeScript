@@ -1,26 +1,26 @@
 
 import { EventBase } from './EventBase';
 
-export abstract class AccountEventBase extends EventBase {
-  public accountId: string;
+export interface AccountEventBase extends EventBase {
+  accountId: string;
 }
-export class AccountCreated extends AccountEventBase {
-  public owner: string;
-  public creationDate: Date;
-  public type: 'ACCOUNT_CREATED';
+export interface AccountCreated extends AccountEventBase {
+  owner?: string;
+  creationDate?: Date;
+  type: 'ACCOUNT_CREATED';
 }
-export class AccountUpdated extends AccountEventBase {
-  public newOwner: string;
-  public updatedDate: Date;
-  public type: 'ACCOUNT_UPDATED';
+export interface AccountUpdated extends AccountEventBase {
+  newOwner?: string;
+  updatedDate?: Date;
+  type: 'ACCOUNT_UPDATED';
 }
-export class AccountDeletionRequested extends AccountEventBase {
-  public requestedBy: string;
-  public type: 'ACCOUNT_DELETION_REQUESTED';
+export interface AccountDeletionRequested extends AccountEventBase {
+  requestedBy?: string;
+  type: 'ACCOUNT_DELETION_REQUESTED';
 }
-export class AccountDeleted extends AccountEventBase {
-  public deletionDate: Date;
-  public type: 'ACCOUNT_DELETED';
+export interface AccountDeleted extends AccountEventBase {
+  deletionDate?: Date;
+  type: 'ACCOUNT_DELETED';
 }
 
 export type AccountEvent = AccountCreated | AccountUpdated | AccountDeletionRequested | AccountDeleted;

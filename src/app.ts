@@ -14,11 +14,11 @@ console.log('Starting...');
 
 // Init
 const accountId = 'SomeGuid';
-const accountCreated = new AccountCreated();
+const accountCreated: AccountCreated = { accountId, type: 'ACCOUNT_CREATED' };
 accountCreated.accountId = accountId;
-const accountUpdated = new AccountUpdated();
-const accountDeletionRequested = new AccountDeletionRequested();
-const accountDeleted = new AccountDeleted();
+const accountUpdated: AccountUpdated = { accountId, type: 'ACCOUNT_UPDATED' };
+const accountDeletionRequested: AccountDeletionRequested = { accountId, type: 'ACCOUNT_DELETION_REQUESTED' };
+const accountDeleted: AccountDeleted = { accountId, type: 'ACCOUNT_DELETED' };
 
 // Perform manual IoC
 const cache = new MemoryCache<Account>();

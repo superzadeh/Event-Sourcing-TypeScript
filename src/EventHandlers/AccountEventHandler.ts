@@ -14,12 +14,12 @@ export class AccountEventHandler implements IEventHandler<AccountEvent> {
       case 'ACCOUNT_CREATED':
         readModel = new Account();
         readModel.id = event.accountId;
-        // readModel.owner =
+        readModel.owner = event.owner;
         this.cache.Store(readModel.id, readModel);
         break;
       case 'ACCOUNT_UPDATED':
         readModel.lastUpdate = event.timestamp;
-        // readModel.owner =
+        readModel.owner = event.newOwner;
         this.cache.Store(readModel.id, readModel);
         break;
       case 'ACCOUNT_DELETION_REQUESTED':

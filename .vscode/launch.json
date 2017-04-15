@@ -9,7 +9,7 @@
       "console": "internalConsole",
       "name": "DEBUG",
       "outFiles": ["${workspaceRoot}/lib/**/*.js"],
-      // "preLaunchTask": "compile",
+      "preLaunchTask": "compile",
       "program": "${workspaceRoot}/src/app.ts",
       "request": "launch",
       "runtimeArgs": [
