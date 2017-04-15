@@ -27,9 +27,9 @@
   },
   "homepage": "",
   "devDependencies": {
-    "@types/node": "^7.0.12",
+    "@types/node": "7.0.12",
     "rimraf": "2.6.1",
-    "ts-node": "^3.0.2",
+    "ts-node": "3.0.2",
     "tslint": "5.1.0",
     "typescript": "2.2.2"
   }
