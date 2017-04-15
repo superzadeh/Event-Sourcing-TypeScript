@@ -18,7 +18,6 @@ export class AccountEventHandler implements IEventHandler<AccountEvent> {
         this.cache.Store(readModel.id, readModel);
         break;
       case 'ACCOUNT_UPDATED':
-        readModel.lastUpdate = event.timestamp;
         readModel.owner = event.newOwner;
         this.cache.Store(readModel.id, readModel);
         break;
