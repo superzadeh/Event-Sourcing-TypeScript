@@ -14,9 +14,9 @@ console.log('Starting...');
 
 // Init
 const accountId = 'SomeGuid';
-const accountCreated: AccountCreated = { accountId, type: 'ACCOUNT_CREATED' };
+const accountCreated: AccountCreated = { accountId, type: 'ACCOUNT_CREATED', owner: 'Charles' };
 accountCreated.accountId = accountId;
-const accountUpdated: AccountUpdated = { accountId, type: 'ACCOUNT_UPDATED' };
+const accountUpdated: AccountUpdated = { accountId, type: 'ACCOUNT_UPDATED', newOwner: 'Selrahc' };
 const accountDeletionRequested: AccountDeletionRequested = { accountId, type: 'ACCOUNT_DELETION_REQUESTED' };
 const accountDeleted: AccountDeleted = { accountId, type: 'ACCOUNT_DELETED' };
 
