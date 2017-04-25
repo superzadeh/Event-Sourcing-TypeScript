@@ -3,6 +3,7 @@ import * as express from 'express';
 import { injectable, multiInject } from 'inversify';
 import * as logger from 'morgan';
 import { appContainer } from '../container';
+import { MemoryCache } from '../Infrastructure/Cache';
 import { IReadModel } from '../ReadModels/IReadModel';
 import TYPES from '../types';
 import { IApi } from './IApi';
@@ -37,19 +38,18 @@ export class ExpressApi implements IApi {
 
   // Configure API endpoints.
   public routes(): void {
-    /* This is just to get up and running, and to make sure what we've got is
-     * working so far. This function will change when we start to add more
-     * API endpoints */
     const router = express.Router();
 
     this.readModels.forEach((element) => {
-      // placeholder route handler
-      router.get(`/${element.constructor.name}`, (req, res, next) => {
-        res.json({
-          message: `Hello World from ${element.constructor.name}!`,
-        });
+      router.get(`/${element.constructor.name}/:id`, (req, res, next) => {
+        const cache = new MemoryCache<typeof element>();
+        cache.Store('12', { message: 'HelloWorld!' });
+        res.json(
+          cache.Get(req.params.id),
+        );
       });
     });
+
     router.get(`/`, (req, res, next) => {
       res.json({
         message: `Hello World!`,
