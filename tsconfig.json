@@ -9,7 +9,11 @@
     "rootDir": "src/",
     "outDir": "lib/",
     "declaration": true,
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "lib": ["es6"],
+    "types": ["reflect-metadata"]
   },
   "include": [
     "src/**/*"

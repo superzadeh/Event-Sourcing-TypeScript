@@ -1,6 +1,11 @@
+import { injectable } from 'inversify';
+import { IReadModel } from './IReadModel';
 import { IVersionable } from './IVersionable';
 
-export class Account implements IVersionable {
+@injectable()
+export class Account implements IVersionable, IReadModel {
+  public aggregateId: 'ACCOUNT';
+
   public version: number;
   public lastUpdated: Date;
 
