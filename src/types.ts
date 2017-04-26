@@ -1,4 +1,4 @@
 export default {
-  ExpressApi: Symbol('ExpressApi'),
+  ICommand: Symbol('ICommand'),
   IReadModel: Symbol('IReadModel'),
 };

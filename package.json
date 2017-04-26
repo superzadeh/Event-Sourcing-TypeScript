@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build:live",
-    "start:api": "cross-env NODE_ENV=development node ./src/bin/www",
+    "start:models": "cross-env NODE_ENV=development node ./src/bin/www-models",
+    "start:commands": "cross-env NODE_ENV=development node ./src/bin/www-commands",
     "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/app.ts",
     "precompile": "npm run clean",
     "clean": "rimraf lib/*",

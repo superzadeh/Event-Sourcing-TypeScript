@@ -2,29 +2,30 @@ import * as bodyParser from 'body-parser';
 import * as express from 'express';
 import { injectable, multiInject } from 'inversify';
 import * as logger from 'morgan';
+import { ICommand } from '../Commands/ICommand';
 import { appContainer } from '../container';
 import { MemoryCache } from '../Infrastructure/Cache';
-import { IReadModel } from '../ReadModels/IReadModel';
 import TYPES from '../types';
 import { IApi } from './IApi';
 
 // Creates and configures an ExpressJS web server.
 @injectable()
-export class ExpressApi implements IApi {
+export class ApiBase implements IApi {
 
-  public static bootstrap(): ExpressApi {
-    return appContainer.resolve(ExpressApi);
+  public static bootstrap(): ApiBase {
+    return appContainer.resolve(ApiBase);
   }
 
   // ref to Express instance
   public app: express.Application;
-  private readModels: any[];
+  // ref to Express router
+  protected router: express.Router;
 
   // Run configuration methods on the Express instance.
   constructor(
   ) {
-    this.readModels = appContainer.getAll<IReadModel>(TYPES.IReadModel);
     this.app = express();
+    this.router = express.Router();
     this.middleware();
     this.routes();
   }
@@ -38,25 +39,13 @@ export class ExpressApi implements IApi {
 
   // Configure API endpoints.
   public routes(): void {
-    const router = express.Router();
-
-    this.readModels.forEach((element) => {
-      router.get(`/${element.constructor.name}/:id`, (req, res, next) => {
-        const cache = new MemoryCache<typeof element>();
-        cache.Store('12', { message: 'HelloWorld!' });
-        res.json(
-          cache.Get(req.params.id),
-        );
-      });
-    });
-
-    router.get(`/`, (req, res, next) => {
+    this.router.get('/', (req, res, next) => {
       res.json({
-        message: `Hello World!`,
+        message: 'Hello World!',
       });
     });
-    this.app.use('/', router);
+    this.app.use('/api', this.router);
   }
 }
 
-export default ExpressApi;
+export default ApiBase;

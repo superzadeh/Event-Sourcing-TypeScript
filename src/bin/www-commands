@@ -3,13 +3,13 @@
 "use strict";
 
 //module dependencies
-var server = require("../../lib/Api/ExpressApi");
+var server = require("../../lib/Api/CommandsApi");
 var debug = require("debug")("express:server");
 var http = require("http");
 
 //create http server
 var httpPort = normalizePort(process.env.PORT || 8080);
-var app = server.ExpressApi.bootstrap().app;
+var app = server.CommandsApi.bootstrap().app;
 app.set("port", httpPort);
 var httpServer = http.createServer(app);
 
