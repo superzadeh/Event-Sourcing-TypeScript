@@ -9,6 +9,7 @@ export class AccountEventHandler implements IEventHandler<AccountEvent> {
     this.cache = cache;
   }
   public handle(event: AccountEvent) {
+    console.log(`Handling event ${event.type}`);
     let readModel = this.cache.Get(event.accountId);
     switch (event.type) {
       case 'ACCOUNT_CREATED':

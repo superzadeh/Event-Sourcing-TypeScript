@@ -5,7 +5,7 @@ import { ICommandHandler } from './ICommandHandler';
 @injectable()
 export class CounterCommandHandler implements ICommandHandler<CounterCommand> {
   public handle(command: CounterCommand): boolean {
-    console.log(command.commandName);
+    console.log(`Handling command ${command.commandName}`);
     switch (command.commandName) {
       case 'INCREMENT_COUNTER':
         break;
