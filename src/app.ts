@@ -1,37 +1,47 @@
+import axios from 'axios';
+import 'reflect-metadata';
 import {
-  AccountCreated,
-  AccountDeleted,
-  AccountDeletionRequested,
-  AccountEvent,
-  AccountUpdated,
-} from './Events/AccountEvent';
-
-import { AccountEventHandler } from './EventHandlers/AccountEventHandler';
-import { MemoryCache } from './Infrastructure/Cache';
-import { Account } from './ReadModels/Account';
+  DecrementCounter,
+  IncrementCounter,
+} from './Commands/CounterCommand';
+import { CounterEventHandler } from './EventHandlers/CounterEventHandler';
+import { RedisCache } from './Infrastructure/Cache';
 
 console.log('Starting...');
 
 // Init
-const accountId = 'SomeGuid';
-const accountCreated: AccountCreated = { accountId, type: 'ACCOUNT_CREATED', owner: 'Charles' };
-accountCreated.accountId = accountId;
-const accountUpdated: AccountUpdated = { accountId, type: 'ACCOUNT_UPDATED', newOwner: 'Selrahc' };
-const accountDeletionRequested: AccountDeletionRequested = { accountId, type: 'ACCOUNT_DELETION_REQUESTED' };
-const accountDeleted: AccountDeleted = { accountId, type: 'ACCOUNT_DELETED' };
+const increment: IncrementCounter = { commandName: 'INCREMENT_COUNTER', counterId: 1 };
+const decrement: DecrementCounter = { commandName: 'DECREMENT_COUNTER', counterId: 1 };
 
-// Perform manual IoC
-const cache = new MemoryCache<Account>();
-const eventHandler = new AccountEventHandler(cache);
+// Start Event Handlers
+const eventHandler = new CounterEventHandler(new RedisCache());
 
-// Play events
-eventHandler.handle(accountCreated);
-console.log(cache.Get(accountId));
-eventHandler.handle(accountUpdated);
-console.log(cache.Get(accountId));
-eventHandler.handle(accountDeletionRequested);
-console.log(cache.Get(accountId));
-eventHandler.handle(accountDeleted);
-console.log(cache.Get(accountId));
+// Util functions
+const sendCounterCommand = (command: IncrementCounter | DecrementCounter) => {
+  return axios.post('http://localhost:8081/api/counter', command)
+    .then((response) => {
+      // console.log('Send command response: ', response.data);
+    }).catch((error) => {
+      console.log(error);
+    });
+};
 
-console.log('Completed!');
+const getCounter = () => {
+  return axios.get('http://localhost:8080/api/counter/1')
+    .then((response) => {
+      console.log('Get counter: ', response.data);
+    }).catch((error) => {
+      console.log(error);
+    });
+};
+
+// Play demo
+sendCounterCommand(increment)
+  .then(() => getCounter())
+  .then(() => sendCounterCommand(decrement))
+  .then(() => getCounter())
+  .then(() => sendCounterCommand(increment))
+  .then(() => sendCounterCommand(increment))
+  .then(() => sendCounterCommand(increment))
+  .then(() => sendCounterCommand(increment))
+  .then(() => getCounter());

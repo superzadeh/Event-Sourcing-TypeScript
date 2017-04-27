@@ -7,9 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build:live",
-    "start:models": "cross-env NODE_ENV=development node ./src/bin/www-models",
-    "start:commands": "cross-env NODE_ENV=development node ./src/bin/www-commands",
-    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/app.ts",
+    "start:models": "cross-env NODE_ENV=development nodemon ./src/bin/www-models",
+    "start:commands": "cross-env NODE_ENV=development nodemon ./src/bin/www-commands",
+    "build:live": "nodemon ./lib/app.js",
     "precompile": "npm run clean",
     "clean": "rimraf lib/*",
     "compile": "npm run lint && npm run compile:ts",
@@ -32,6 +32,7 @@
     "@types/body-parser": "1.16.3",
     "@types/morgan": "1.7.32",
     "@types/node": "7.0.12",
+    "axios": "0.16.1",
     "cross-env": "4.0.0",
     "nodemon": "1.11.0",
     "rimraf": "2.6.1",
@@ -40,10 +41,14 @@
     "typescript": "2.2.2"
   },
   "dependencies": {
+    "@types/bluebird": "3.5.3",
+    "@types/redis": "0.12.36",
+    "bluebird": "3.5.0",
     "body-parser": "1.17.1",
     "express": "4.15.2",
     "inversify": "4.0.0",
     "morgan": "1.8.1",
+    "redis": "2.7.1",
     "reflect-metadata": "0.1.10"
   }
 }

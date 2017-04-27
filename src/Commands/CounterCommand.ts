@@ -1,8 +1,8 @@
 
-import { CommandBase } from './CommandBase';
+import { ICommand } from './ICommand';
 
-export interface CounterCommandBase extends CommandBase {
-  counterId: string;
+export interface CounterCommandBase extends ICommand {
+  counterId: number;
 }
 export interface IncrementCounter extends CounterCommandBase {
   commandName: 'INCREMENT_COUNTER';

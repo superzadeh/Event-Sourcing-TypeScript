@@ -1,4 +1,4 @@
-export interface CommandBase {
+export interface ICommand {
   id?: string;
   timestamp?: Date;
 }
