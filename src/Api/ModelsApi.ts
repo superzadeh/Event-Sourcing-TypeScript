@@ -22,6 +22,7 @@ export class ModelsApi extends ApiBase {
     // Add custom routes
     const readModels: any[] = appContainer.getAll<IReadModel>(TYPES.IReadModel);
     readModels.forEach((element) => {
+
       this.router.get(`/${element.constructor.name}/:id`, (req, res, next) => {
         const cache = new RedisCache<typeof element>();
         const callback = (model: any) => {
@@ -29,6 +30,7 @@ export class ModelsApi extends ApiBase {
         };
         cache.Get(req.params.id, callback);
       });
+
     });
     // bootstrap the base routes
     super.routes();

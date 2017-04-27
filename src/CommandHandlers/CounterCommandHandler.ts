@@ -10,9 +10,11 @@ export class CounterCommandHandler implements ICommandHandler<CounterCommand> {
   constructor() {
     this.pub = redis.createClient();
   }
+
   public handle(command: CounterCommand): boolean {
     console.log(`Handling command ${command.commandName}`);
     let event: CounterEvent;
+
     switch (command.commandName) {
       case 'INCREMENT_COUNTER':
         event = {
@@ -20,16 +22,24 @@ export class CounterCommandHandler implements ICommandHandler<CounterCommand> {
           type: 'COUNTER_INCREMENTED',
           id: command.counterId.toString(),
         };
-        console.log(`publish event ${JSON.stringify(event)}`);
         this.pub.publish('commands', JSON.stringify(event));
         break;
+
       case 'DECREMENT_COUNTER':
         event = {
           timestamp: new Date(),
           type: 'COUNTER_DECREMENTED',
           id: command.counterId.toString(),
         };
-        console.log(`publish event ${JSON.stringify(event)}`);
+        this.pub.publish('commands', JSON.stringify(event));
+        break;
+
+      case 'RESET_COUNTER':
+        event = {
+          timestamp: new Date(),
+          type: 'COUNTER_RESET',
+          id: command.counterId.toString(),
+        };
         this.pub.publish('commands', JSON.stringify(event));
         break;
       default:

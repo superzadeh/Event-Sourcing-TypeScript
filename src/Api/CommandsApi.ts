@@ -26,7 +26,9 @@ export class CommandsApi extends ApiBase {
     commandHandlers.forEach((commandHandler) => {
       const commandName = commandHandler.constructor.name.replace('CommandHandler', '');
       this.router.post(`/${commandName}`, (req, res, next) => {
+
         commandHandler.handle(req.body);
+
         res.json({
           message: `Command ${commandName} sent to ${commandHandler.constructor.name}`,
           parameters: req.body,

@@ -14,5 +14,8 @@ export interface CounterDecremented extends CounterEventBase {
   updatedDate?: Date;
   type: 'COUNTER_DECREMENTED';
 }
+export interface CounterReset extends CounterEventBase {
+  type: 'COUNTER_RESET';
+}
 
-export type CounterEvent = CounterIncremented | CounterDecremented;
+export type CounterEvent = CounterIncremented | CounterDecremented | CounterReset;

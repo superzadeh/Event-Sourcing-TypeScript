@@ -35,7 +35,7 @@ to create them, add them to a Tagged Union and process them in the
 API endpoints are automatically generated for ReadModels and Command Handlers.
 This is achieved using [InversifyJS](https://github.com/inversify/InversifyJS) in
 order to retrieve all ReadModels/CommandHandlers and create Express routes for each
-of them.
+of them. The registration is done in ``container.ts`.
 
 The API endpoints are split into 2: one for command handlers, one for read models to
 allow for better control of scalability.
@@ -44,12 +44,12 @@ allow for better control of scalability.
 
 ```sh
 npm run start:models
-curl http://localhost:8080/api/account/12
+curl http://localhost:8080/api/counter/12
 ```
 
 ### Running the Commands API
 
 ```sh
 npm run start:commands
-curl --data "commandName=INCREMENT_COUNTER" http://localhost:8081/api/counter
+curl --data "commandName=INCREMENT_COUNTER&counterId=1" http://localhost:8081/api/counter
 ```

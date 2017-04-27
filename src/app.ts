@@ -10,8 +10,8 @@ import { RedisCache } from './Infrastructure/Cache';
 console.log('Starting...');
 
 // Init
-const increment: IncrementCounter = { commandName: 'INCREMENT_COUNTER', counterId: 1 };
-const decrement: DecrementCounter = { commandName: 'DECREMENT_COUNTER', counterId: 1 };
+const increment: IncrementCounter = { commandName: 'INCREMENT_COUNTER', counterId: 2 };
+const decrement: DecrementCounter = { commandName: 'DECREMENT_COUNTER', counterId: 2 };
 
 // Start Event Handlers
 const eventHandler = new CounterEventHandler(new RedisCache());
