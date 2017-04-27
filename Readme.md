@@ -19,6 +19,18 @@ To install all dependencies, simply run:
 npm install
 ```
 
+## Building
+
+There two commands to build the app:
+
+```sh
+// build and lint once
+npm run build
+// build and rebuild on file changes.
+// Since we are using nodemon, the app will also restart automatically with updates
+npm run build:watch
+```
+
 ## TypeScript
 
 The Tagged unions of the TypeScript language are heavily used to provide first class
