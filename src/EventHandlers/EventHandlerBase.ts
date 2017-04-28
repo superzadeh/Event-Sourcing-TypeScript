@@ -6,7 +6,7 @@ import { IEventHandler } from './IEventHandler';
 
 export abstract class EventHandlerBase<T> implements IEventHandler<T> {
 
-  private sub: redis.RedisClient;
+  protected sub: redis.RedisClient;
 
   public start(): void {
     this.sub = redis.createClient({ host: 'redis' });

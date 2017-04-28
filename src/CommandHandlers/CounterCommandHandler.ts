@@ -2,15 +2,11 @@ import { injectable } from 'inversify';
 import * as redis from 'redis';
 import { CounterCommand } from '../Commands/CounterCommand';
 import { CounterDecremented, CounterEvent, CounterIncremented } from '../Events/CounterEvents';
+import { CommandHandlerBase } from './CommandHandlerBase';
 import { ICommandHandler } from './ICommandHandler';
 
 @injectable()
-export class CounterCommandHandler implements ICommandHandler<CounterCommand> {
-  private pub: redis.RedisClient;
-  constructor() {
-    this.pub = redis.createClient({ host: 'redis' });
-  }
-
+export class CounterCommandHandler extends CommandHandlerBase<CounterCommand> {
   public handle(command: CounterCommand): boolean {
     console.log(`Handling command ${command.commandName}`);
     let event: CounterEvent;
