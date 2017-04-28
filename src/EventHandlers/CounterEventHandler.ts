@@ -2,23 +2,19 @@ import * as redis from 'redis';
 import { CounterEvent } from '../Events/CounterEvents';
 import { ICache } from '../Infrastructure/Cache';
 import { Counter } from '../ReadModels/Counter';
+import { EventHandlerBase } from './EventHandlerBase';
 import { IEventHandler } from './IEventHandler';
 
-export class CounterEventHandler implements IEventHandler<CounterEvent> {
-  private sub: redis.RedisClient;
+export class CounterEventHandler extends EventHandlerBase<CounterEvent> {
+
   private cache: ICache<Counter>;
 
   constructor(cache: ICache<Counter>) {
+    super();
     this.cache = cache;
-    this.sub = redis.createClient({ host: 'redis' });
-    this.sub.on('message', (channel: string, message: any) => {
-      this.handle(JSON.parse(message));
-    });
-    this.sub.subscribe('commands');
+
   }
-
   public handle(event: CounterEvent) {
-
     const process = (model: Counter) => {
 
       if (!model) {
@@ -43,4 +39,5 @@ export class CounterEventHandler implements IEventHandler<CounterEvent> {
     };
     this.cache.Get(event.id, process);
   }
+
 }
