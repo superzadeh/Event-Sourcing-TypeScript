@@ -10,7 +10,7 @@ export class CounterEventHandler implements IEventHandler<CounterEvent> {
 
   constructor(cache: ICache<Counter>) {
     this.cache = cache;
-    this.sub = redis.createClient();
+    this.sub = redis.createClient({ host: 'redis' });
     this.sub.on('message', (channel: string, message: any) => {
       this.handle(JSON.parse(message));
     });

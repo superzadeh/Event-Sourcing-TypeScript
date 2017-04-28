@@ -8,7 +8,7 @@ import { ICommandHandler } from './ICommandHandler';
 export class CounterCommandHandler implements ICommandHandler<CounterCommand> {
   private pub: redis.RedisClient;
   constructor() {
-    this.pub = redis.createClient();
+    this.pub = redis.createClient({ host: 'redis' });
   }
 
   public handle(command: CounterCommand): boolean {
@@ -42,6 +42,7 @@ export class CounterCommandHandler implements ICommandHandler<CounterCommand> {
         };
         this.pub.publish('commands', JSON.stringify(event));
         break;
+
       default:
         return false;
     }

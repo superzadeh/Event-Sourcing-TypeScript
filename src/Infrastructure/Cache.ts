@@ -27,7 +27,7 @@ export class RedisCache<T extends IVersionable> implements ICache<T> {
   private redis: redis.RedisClient;
   private values: { [key: string]: T; } = {};
   constructor() {
-    this.redis = redis.createClient();
+    this.redis = redis.createClient({ host: 'redis' });
   }
   public Get(key: string, callback: (result: T) => void) {
     this.redis.get(key, (err, value) => {
