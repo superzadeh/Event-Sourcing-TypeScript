@@ -4,6 +4,8 @@ ENV APP_DIR=/usr/app
 RUN mkdir -p $APP_DIR
 WORKDIR $APP_DIR
 
+RUN npm install pm2 -g
+
 # Install app dependencies
 ADD package.json $APP_DIR
 RUN npm install

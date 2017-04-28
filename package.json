@@ -7,9 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build:live",
-    "start:models": "cross-env NODE_ENV=development nodemon ./src/bin/www-models",
-    "start:commands": "cross-env NODE_ENV=development nodemon ./src/bin/www-commands",
-    "build:live": "nodemon ./lib/app.js",
+    "start:models": "cross-env NODE_ENV=development pm2-docker start ./src/bin/www-models --watch",
+    "start:commands": "cross-env NODE_ENV=development pm2-docker start ./src/bin/www-commands --watch",
+    "build:live": "pm2-docker start ./lib/app.js --watch",
     "precompile": "npm run clean",
     "clean": "rimraf lib/*",
     "compile": "npm run lint && npm run compile:ts",
@@ -48,6 +48,7 @@
     "express": "4.15.2",
     "inversify": "4.0.0",
     "morgan": "1.8.1",
+    "pm2": "2.4.6",
     "redis": "2.7.1",
     "reflect-metadata": "0.1.10"
   }
