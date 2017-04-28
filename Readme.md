@@ -19,16 +19,23 @@ To install all dependencies, simply run:
 npm install
 ```
 
-## Building
+## Building and Running
 
-There two commands to build the app:
+Everything is automated. All components run into docker containers and have watch mode enabled
+for development. Change a file in TypeScript, it will be built automatically and the process
+running in docker will be restarted (achieved using a build with watch mode, pm2 with watch mode
+as well and mounting volumes in `docker-compose.override.yml`).
 
 ```sh
-// build and lint once
+// build and lint the TypeScript code once
 npm run build
 // build and rebuild on file changes.
-// Since we are using nodemon, the app will also restart automatically with updates
+// Since we are using pm2 in watch mode, the app will also restart automatically with updates
 npm run build:watch
+// Then build and run the containers
+docker-compose build
+// pm2 inside docker will watch for changes and restart processes as needed
+docker-compose up
 ```
 
 ## TypeScript

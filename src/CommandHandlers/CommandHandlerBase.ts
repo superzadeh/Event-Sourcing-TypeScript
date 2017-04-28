@@ -4,6 +4,7 @@ import { CounterCommand } from '../Commands/CounterCommand';
 import { CounterDecremented, CounterEvent, CounterIncremented } from '../Events/CounterEvents';
 import { ICommandHandler } from './ICommandHandler';
 
+@injectable()
 export abstract class CommandHandlerBase<T> implements ICommandHandler<T> {
   protected pub: redis.RedisClient;
   constructor() {

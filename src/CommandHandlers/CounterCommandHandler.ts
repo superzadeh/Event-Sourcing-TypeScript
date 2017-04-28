@@ -9,7 +9,6 @@ import { ICommandHandler } from './ICommandHandler';
 export class CounterCommandHandler extends CommandHandlerBase<CounterCommand> {
   public handle(command: CounterCommand): boolean {
     let event: CounterEvent;
-
     switch (command.commandName) {
       /*
       * TODO: replace this by building a Counter aggregate

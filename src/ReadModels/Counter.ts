@@ -10,4 +10,7 @@ export class Counter implements IReadModel {
 
   public id: string;
   public value: number;
+  public numberOfTimesIncremented: number;
+  public numberOfTimesDecremented: number;
+  public numberOfTimesReset: number;
 }

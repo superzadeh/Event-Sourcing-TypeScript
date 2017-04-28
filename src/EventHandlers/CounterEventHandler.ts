@@ -25,14 +25,17 @@ export class CounterEventHandler extends EventHandlerBase<CounterEvent> {
       switch (event.type) {
         case 'COUNTER_INCREMENTED':
           model.value += 1;
+          model.numberOfTimesIncremented += 1;
           this.cache.Store(model.id, model);
           break;
         case 'COUNTER_DECREMENTED':
           model.value -= 1;
+          model.numberOfTimesDecremented += 1;
           this.cache.Store(model.id, model);
           break;
         case 'COUNTER_RESET':
           model.value = 0;
+          model.numberOfTimesDecremented += 1;
           this.cache.Store(model.id, model);
           break;
       }
