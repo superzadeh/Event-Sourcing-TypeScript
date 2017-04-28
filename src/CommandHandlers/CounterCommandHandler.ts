@@ -8,10 +8,15 @@ import { ICommandHandler } from './ICommandHandler';
 @injectable()
 export class CounterCommandHandler extends CommandHandlerBase<CounterCommand> {
   public handle(command: CounterCommand): boolean {
-    console.log(`Handling command ${command.commandName}`);
     let event: CounterEvent;
 
     switch (command.commandName) {
+      /*
+      * TODO: replace this by building a Counter aggregate
+      * and calling Counter.Increment(), Counter.Decrement(), Counter.Reset()
+      * This aggregate will also dispatch the events and should be built from
+      * the EventStore
+      */
       case 'INCREMENT_COUNTER':
         event = {
           timestamp: new Date(),
