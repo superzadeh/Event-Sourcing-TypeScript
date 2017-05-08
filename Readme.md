@@ -38,6 +38,12 @@ docker-compose build
 docker-compose up
 ```
 
+### Connecting to redis
+
+```sh
+docker run -it --link eventsourcingtypescript_redis_1:redis --network eventsourcingtypescript_default --rm redis redis-cli -h redis -p 6379
+```
+
 ## TypeScript
 
 The Tagged unions of the TypeScript language are heavily used to provide first class

@@ -12,10 +12,11 @@ export class CounterEventHandler extends EventHandlerBase<CounterEvent> {
   constructor(cache: ICache<Counter>) {
     super();
     this.cache = cache;
-
   }
+
   public handle(event: CounterEvent) {
     const process = (model: Counter) => {
+      console.log('Processing event', event);
 
       if (!model) {
         model = new Counter();

@@ -24,10 +24,10 @@ services:
     volumes:
       - .:/usr/app
     healthcheck:
-      test: ["CMD-SHELL", "curl http://127.0.0.1:8081/api/healthcheck"]
-      interval: 10s
-      timeout: 2s
-      retries: 5
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/api/healthcheck"]
+      interval: 60s
+      timeout: 5s
+      retries: 3
 
   commands-api:
     environment:
@@ -39,10 +39,10 @@ services:
     volumes:
       - .:/usr/app
     healthcheck:
-      test: ["CMD-SHELL", "curl http://127.0.0.1:8081/api/healthcheck"]
-      interval: 10s
-      timeout: 2s
-      retries: 5
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8081/api/healthcheck"]
+      interval: 60s
+      timeout: 5s
+      retries: 3
 
   counter-eventhandler:
     volumes:

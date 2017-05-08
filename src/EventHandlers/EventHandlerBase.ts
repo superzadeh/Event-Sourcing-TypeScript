@@ -15,6 +15,7 @@ export abstract class EventHandlerBase<T> implements IEventHandler<T> {
       this.handle(JSON.parse(message));
     });
   }
+
   public stop(): void {
     this.sub.unsubscribe();
     this.sub.quit();

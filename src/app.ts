@@ -16,6 +16,7 @@ const decrement: DecrementCounter = { commandName: 'DECREMENT_COUNTER', counterI
 
 // Start Event Handlers
 const eventHandler = new CounterEventHandler(new RedisCache());
+eventHandler.start();
 
 // Util functions
 const sendCounterCommand = (command: IncrementCounter | DecrementCounter) => {
