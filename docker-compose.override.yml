@@ -23,6 +23,11 @@ services:
       - "8080:8080"
     volumes:
       - .:/usr/app
+    healthcheck:
+      test: ["CMD-SHELL", "curl http://127.0.0.1:8081/api/healthcheck"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
 
   commands-api:
     environment:
@@ -33,7 +38,17 @@ services:
       - "8081:8081"
     volumes:
       - .:/usr/app
+    healthcheck:
+      test: ["CMD-SHELL", "curl http://127.0.0.1:8081/api/healthcheck"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
 
   counter-eventhandler:
     volumes:
       - .:/usr/app
+    depends_on:
+      commands-api:
+        condition: service_healthy
+      models-api:
+        condition: service_healthy

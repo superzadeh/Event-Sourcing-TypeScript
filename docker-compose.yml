@@ -30,5 +30,7 @@ services:
       context: .
       dockerfile: ./docker/Dockerfile-counter-eventhandler
     links:
+      - commands-api
+      - models-api
       - event-store
       - redis

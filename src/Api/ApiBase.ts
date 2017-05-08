@@ -39,9 +39,9 @@ export class ApiBase implements IApi {
 
   // Configure API endpoints.
   public routes(): void {
-    this.router.get('/', (req, res, next) => {
+    this.router.get('/healthcheck', (req, res, next) => {
       res.json({
-        message: 'Hello World!',
+        message: 'Healthy !',
       });
     });
     this.app.use('/api', this.router);
