@@ -1,9 +1,11 @@
+import { injectable } from 'inversify';
 import * as redis from 'redis';
 import { CounterEvent } from '../Events/CounterEvents';
 import { ICache } from '../Infrastructure/Cache';
 import { Counter } from '../ReadModels/Counter';
 import { IEventHandler } from './IEventHandler';
 
+@injectable()
 export abstract class EventHandlerBase<T> implements IEventHandler<T> {
 
   protected sub: redis.RedisClient;

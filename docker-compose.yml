@@ -24,11 +24,20 @@ services:
       - event-store
       - redis
 
-  counter-eventhandler:
-    image: 12grapes/counter-eventhandler
+  eventhandlers:
+    image: 12grapes/eventhandlers
     build:
       context: .
-      dockerfile: ./docker/Dockerfile-counter-eventhandler
+      dockerfile: ./docker/Dockerfile-eventhandlers
+    links:
+      - event-store
+      - redis
+
+  app-test:
+    image: 12grapes/app-test
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile-app-test
     links:
       - commands-api
       - models-api

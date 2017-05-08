@@ -7,8 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build:live",
-    "start:models": "cross-env NODE_ENV=development pm2-docker start ./src/bin/www-models --watch",
     "start:commands": "cross-env NODE_ENV=development pm2-docker start ./src/bin/www-commands --watch",
+    "start:models": "cross-env NODE_ENV=development pm2-docker start ./src/bin/www-models --watch",
+    "start:handlers": "cross-env NODE_ENV=development pm2-docker start ./lib/EventHandlers/EventHandlers.js --watch",
     "build:live": "pm2-docker start ./lib/app.js --watch",
     "precompile": "npm run clean",
     "clean": "rimraf lib/*",

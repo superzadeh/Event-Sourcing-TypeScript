@@ -1,6 +1,6 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
-import { injectable, multiInject } from 'inversify';
+import { injectable } from 'inversify';
 import * as logger from 'morgan';
 import { ICommandHandler } from '../CommandHandlers/ICommandHandler';
 import { CounterCommand } from '../Commands/CounterCommand';

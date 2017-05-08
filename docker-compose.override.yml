@@ -44,7 +44,11 @@ services:
       timeout: 5s
       retries: 3
 
-  counter-eventhandler:
+  eventhandlers:
+    volumes:
+      - .:/usr/app
+
+  app-test:
     volumes:
       - .:/usr/app
     depends_on:

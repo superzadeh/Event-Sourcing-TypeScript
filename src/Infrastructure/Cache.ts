@@ -1,3 +1,4 @@
+import { injectable } from 'inversify';
 import * as redis from 'redis';
 import { IVersionable } from '../ReadModels/IVersionable';
 
@@ -7,6 +8,7 @@ export interface ICache<T extends IVersionable> {
   Store(key: string, value: T): void;
 }
 
+@injectable()
 export class MemoryCache<T extends IVersionable> implements ICache<T> {
   private values: { [key: string]: T; } = {};
   public Get(key: string, callback: (result: T) => void) {
@@ -23,6 +25,7 @@ export class MemoryCache<T extends IVersionable> implements ICache<T> {
   }
 }
 
+@injectable()
 export class RedisCache<T extends IVersionable> implements ICache<T> {
   private redis: redis.RedisClient;
   private values: { [key: string]: T; } = {};

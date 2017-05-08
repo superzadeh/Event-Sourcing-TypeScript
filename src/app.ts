@@ -14,15 +14,11 @@ const counterId = 2;
 const increment: IncrementCounter = { commandName: 'INCREMENT_COUNTER', counterId };
 const decrement: DecrementCounter = { commandName: 'DECREMENT_COUNTER', counterId };
 
-// Start Event Handlers
-const eventHandler = new CounterEventHandler(new RedisCache());
-eventHandler.start();
-
 // Util functions
 const sendCounterCommand = (command: IncrementCounter | DecrementCounter) => {
   return axios.post('http://commands-api:8081/api/counter', command)
     .then((response) => {
-      // console.log('Send command response: ', response.data);
+      console.log('Send command response: ', response.data);
     }).catch((error) => {
       console.log(error);
     });
