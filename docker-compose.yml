@@ -3,9 +3,6 @@ services:
   redis:
     image: redis:alpine
 
-  event-store:
-    image: eventstore/eventstore
-
   models-api:
     image: 12grapes/models-api
     build:

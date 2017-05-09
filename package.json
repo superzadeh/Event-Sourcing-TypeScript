@@ -46,6 +46,7 @@
     "@types/redis": "0.12.36",
     "bluebird": "3.5.0",
     "body-parser": "1.17.1",
+    "eventstore": "1.12.2",
     "express": "4.15.2",
     "inversify": "4.0.0",
     "morgan": "1.8.1",
