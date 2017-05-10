@@ -2,11 +2,17 @@ import { injectable } from 'inversify';
 import * as redis from 'redis';
 import { CounterCommand } from '../Commands/CounterCommand';
 import { CounterDecremented, CounterEvent, CounterIncremented } from '../Events/CounterEvents';
+import { EventRepository } from '../Infrastructure/EventRepository';
 import { CommandHandlerBase } from './CommandHandlerBase';
 import { ICommandHandler } from './ICommandHandler';
 
 @injectable()
 export class CounterCommandHandler extends CommandHandlerBase<CounterCommand> {
+  private eventStore: EventRepository;
+  public constructor() {
+    super();
+    this.eventStore = new EventRepository();
+  }
   public handle(command: CounterCommand): boolean {
     let event: CounterEvent;
     switch (command.commandName) {
@@ -22,6 +28,7 @@ export class CounterCommandHandler extends CommandHandlerBase<CounterCommand> {
           type: 'COUNTER_INCREMENTED',
           id: command.counterId.toString(),
         };
+        this.eventStore.save('counter', -1, [event]);
         this.pub.publish('commands', JSON.stringify(event));
         break;
 
@@ -31,6 +38,7 @@ export class CounterCommandHandler extends CommandHandlerBase<CounterCommand> {
           type: 'COUNTER_DECREMENTED',
           id: command.counterId.toString(),
         };
+        this.eventStore.save('counter', -1, [event]);
         this.pub.publish('commands', JSON.stringify(event));
         break;
 
@@ -40,6 +48,7 @@ export class CounterCommandHandler extends CommandHandlerBase<CounterCommand> {
           type: 'COUNTER_RESET',
           id: command.counterId.toString(),
         };
+        this.eventStore.save('counter', -1, [event]);
         this.pub.publish('commands', JSON.stringify(event));
         break;
 
