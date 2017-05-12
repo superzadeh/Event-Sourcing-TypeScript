@@ -1,4 +1,4 @@
-FROM node:boron
+FROM node:boron-slim
 
 ENV APP_DIR=/usr/app
 RUN mkdir -p $APP_DIR

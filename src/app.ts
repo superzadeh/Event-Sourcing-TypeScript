@@ -36,10 +36,7 @@ const getCounter = () => {
 // Play demo
 sendCounterCommand(increment)
   .then(() => getCounter())
-  .then(() => sendCounterCommand(decrement))
+  .then(() => sendCounterCommand(increment))
   .then(() => getCounter())
-  .then(() => sendCounterCommand(increment))
-  .then(() => sendCounterCommand(increment))
-  .then(() => sendCounterCommand(increment))
-  .then(() => sendCounterCommand(increment))
+  .then(() => sendCounterCommand(decrement))
   .then(() => getCounter());
