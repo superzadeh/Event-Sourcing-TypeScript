@@ -12,7 +12,7 @@ export class EventRepository {
     this.httpClient = axios.create({
       baseURL: 'http://' + process.env.EVENTSTORE_ENDPOINT,
       timeout: 1000,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/vnd.eventstore.events+json' },
     });
   }
 
@@ -48,12 +48,7 @@ export class EventRepository {
       method: 'post',
       url: '/streams/' + id,
       data: eventsData,
-      headers: {
-        'Content-Type': 'application/json',
-        'ES-ExpectedVersion': version,
-      },
     }).then((response: any) => {
-      console.log(response);
       return callback && callback(response.status !== 201);
     }).catch((error) => console.log(error));
   }
@@ -153,6 +148,6 @@ export class EventRepository {
       };
     });
 
-    return JSON.stringify(eventsData);
+    return eventsData;
   }
 }

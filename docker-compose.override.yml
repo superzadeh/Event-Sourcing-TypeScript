@@ -32,7 +32,7 @@ services:
   commands-api:
     environment:
       - PORT=8081
-      - EVENTSTORE_ENDPOINT=event-store:1113
+      - EVENTSTORE_ENDPOINT=event-store:2113
       - EVENTSTORE_BATCHSIZE=10
     expose:
       - "8081"
